@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+    --font-fraunces: "Fraunces", serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+:root {
+    --surface: #FFFFFF;
+    --surface-alt: #F3EADB;
+    --text: #2A1F17;
+    --border: #D9C7AE;
+    --primary-ember: #B8421E;
+    --text-muted: #6B5A4C;
+    --background: #FBF6EE;
+    --accent-saffron: #E0A530;
+}
+
+[theme="dark"] {
+    --surface: #221A14;
+    --surface-alt: #2D231B;
+    --text: #F6EBDD;
+    --border: #4A3A2D;
+    --primary-ember: #E8673D;
+    --text-muted: #BFAE9B;
+    --background: #17110D;
+    --accent-saffron: #F0B94A;
+
+}

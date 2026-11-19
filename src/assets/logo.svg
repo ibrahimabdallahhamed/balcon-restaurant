@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 120 120" role="img" aria-label="Ember and Olive logo">
+  <circle cx="60" cy="60" r="54" fill="none" stroke="#B8421E" stroke-width="3"/>
+  <path d="M60 24 C74 42 82 52 82 66 C82 78 72 88 60 88 C48 88 38 78 38 66 C38 56 46 48 52 40 C54 46 56 48 58 48 C60 40 58 32 60 24 Z" fill="#B8421E"/>
+  <path d="M60 56 C67 65 70 70 70 76 C70 82 65 86 60 86 C55 86 50 82 50 76 C50 70 54 64 60 56 Z" fill="#E0A530"/>
+  <path d="M32 88 C50 79 70 79 88 88 C72 99 48 99 32 88 Z" fill="#4F5B2A"/>
+</svg>
