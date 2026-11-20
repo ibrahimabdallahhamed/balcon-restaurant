@@ -12,7 +12,11 @@ import resLogo from "../assets/logo.svg";
 
 import { useState } from "react";
 export default function Nav() {
-  const [theme, setTheme] = useState(false);
+  const storageTheme = window.localStorage.getItem("newTheme");
+  const storageThemeBool = storageTheme === "true" ? true : false;
+  const [theme, setTheme] = useState(storageThemeBool);
+  let themeValue = theme ? "dark" : "light";
+  document.body.setAttribute("theme", themeValue);
   const [navOn, setNavOn] = useState(false);
   const { en, toggleLanguage } = useContext(LanguageContext);
 
@@ -23,8 +27,11 @@ export default function Nav() {
     const newTheme = !theme;
     setTheme(newTheme);
     let themeValue = newTheme ? "dark" : "light";
+    window.localStorage.setItem("newTheme", newTheme);
+
     document.body.setAttribute("theme", themeValue);
   }
+
   /* --------------------------------------------
    **               handle list
    **---------------------------------------------*/
@@ -35,6 +42,7 @@ export default function Nav() {
     setNavOn(false);
     document.body.style.overflow = "auto";
   }
+
   /**------------------------------------------------------------------------
    **                          Return SECTION
    *------------------------------------------------------------------------**/

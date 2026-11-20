@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
-import Nav from "./componants/Nav";
+import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
