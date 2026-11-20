@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { LanguageContext } from "../context/LanguageContext";
-import foodPic from "../assets/food.jpg";
 import { useNavigate } from "react-router-dom";
 import { Categories, GetRandomMeal, GetMulRandMeals } from "../Api/foodApi";
 
@@ -15,16 +14,38 @@ export default function Home() {
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));
   }, []);
-  useEffect(() => {
+  /* useEffect(() => {
     GetRandomMeal()
-      .then((data) => setRandomMeal(data))
+      .then((data) => setRandomMeal([data]))
+      .catch((err) => console.log(err));
+  }, []); */
+  useEffect(() => {
+    GetRandomMeal(3)
+      .then((data) => {
+        const mealWithPrice = [data].map((meal) => ({
+          ...meal,
+          price: random(5, 20),
+        }));
+        setRandomMeal(mealWithPrice);
+      })
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
     GetMulRandMeals(3)
-      .then((data) => setRandomMeals(data))
+      .then((data) => {
+        const mealWithPrice = data.map((meal) => ({
+          ...meal,
+          price: random(5, 20),
+        }));
+        setRandomMeals(mealWithPrice);
+      })
       .catch((err) => console.log(err));
   }, []);
+  /*   useEffect(() => {
+    GetMulRandMeals(3)
+      .then((data) => setRandomMeals(data))
+      .catch((err) => console.log(err));
+  }, []); */
 
   const navigate = useNavigate();
   const { en } = useContext(LanguageContext);
@@ -58,7 +79,38 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <img src={foodPic} className="rounded-[30px]" />
+        <div>
+          {randomMeal.map((meal) => (
+            <div key={meal.idMeal} className="relative">
+              <img
+                src={meal.strMealThumb}
+                className="rounded-[30px] md:min-w-[800px] "
+              />
+              <p
+                className="absolute bg-[var(--accent-saffron)] h-[80px] w-[80px] md:w-[100px] md:h-[100px] rounded-[50%]
+               text-center flex items-center justify-center rotate-[30deg] text-[14px] md:text-[18px] p-[10px] font-[600]
+               top-[20px] right-[30px] "
+              >
+                Chef's pick
+              </p>
+              <div className="absolute bottom-[10px] left-[10px] bg-[var(--surface)] rounded-[15px] md:p-[20px] p-[10px] ">
+                <p className="text-[var(--text-muted)]">Tonight's special</p>
+                <p className="font-[600] md:text-[20px] text-[16px] text-[var(--text)]">
+                  {meal.strMeal}
+                </p>
+                <p className="flex items-center gap-[5px] font-[600] text-[var(--text-muted)]">
+                  4.8{" "}
+                  <span className="text-[var(--accent-saffron)] md:text-[18px] text-[14px]">
+                    ★
+                  </span>
+                  <span>
+                    {random(15, 30)} min. {random(5, 30)} $
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
       <section className="mt-[200px] w-full ">
         <div className="mb-[20px]">
@@ -138,9 +190,9 @@ export default function Home() {
                **               Meal Price
                *---------------------------------------------**/}
               <div className="flex  justify-between px-[20px] mt-5 ">
-                <p className="text-[28px] font-[600] font-fraunces text-[var(--text)]">{`$ ${random(2, 20)} `}</p>
-                <button className=" text-[22px] font-[600] font-fraunces bg-[var(--primary-ember)] text-[var(--surface)] px-[10px] rounded-[99px]">
-                  Add to chart
+                <p className="text-[28px] font-[600] font-fraunces text-[var(--text)]">{`$ ${meal.price} `}</p>
+                <button className=" text-[16px] md:text-[22px] font-[600] font-fraunces bg-[var(--primary-ember)] text-[var(--surface)] px-[10px] rounded-[99px]">
+                  {en ? "Add to cart" : "أضف للسلة"}
                 </button>
               </div>
             </div>
