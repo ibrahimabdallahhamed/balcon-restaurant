@@ -50,7 +50,7 @@ export default function Home() {
   const navigate = useNavigate();
   const { en } = useContext(LanguageContext);
   return (
-    <main className="xl:px-[300px] px-[20px] bg-[var(--background)] md:pt-20 pt-[20px]">
+    <main className="xl:px-[300px] px-[20px] bg-[var(--background)] md:pt-20 py-[20px]">
       <section className="flex flex-col md:flex-row md:gap-[100px] gap-[30px]">
         <div className="flex flex-col gap-[30px]">
           <p className="text-[var(--text-muted)] font-[300] md:text-[20px] text-[14px] ">

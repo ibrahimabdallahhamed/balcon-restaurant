@@ -57,7 +57,7 @@ export default function Menu() {
         <div className="flex  md:flex-wrap items-center gap-[10px] md:gap-[20px] pb-[20px] overflow-x-auto  border-b-[2px] border-[var(--border)]">
           {category.map((cat) => (
             <button
-              className={`${active === cat.strCategory ? "bg-[var(--primary-ember)]" : "bg-[var(--surface)]"} text-[var(--text)]
+              className={`${active === cat.strCategory ? "bg-[var(--primary-ember)] text-[var(--surface-alt)]" : "bg-[var(--surface)] text-[var(--text)]"} 
                rounded-[99px] font-[500] text-[16px] md:text-[22px] py-[7px] px-[15px] border-1 border-[var(--border)] whitespace-nowrap`}
               key={cat.idCategory}
               onClick={() => catHandler(cat.strCategory)}

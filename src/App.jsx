@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
 export default function App() {
   return (
     <LanguageProvider>
@@ -21,6 +22,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </div>
+      <Footer />
     </LanguageProvider>
   );
 }
