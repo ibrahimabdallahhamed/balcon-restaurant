@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="xl:px-[300px] px-[20px] bg-[var(--surface-alt)] md:pt-20 py-[20px] ">
       <div
         className=" border-b-2 border-[var(--border)] py-8 grid grid-cols-1 
-    md:grid-cols-3 md:gap-[300px] gap-[50px] "
+    md:grid-cols-3 md:gap-[300px] md:gap-[50px] gap-[20px] "
       >
         <div className="mb-[30px]">
           <div className="mb-3 flex  items-center  md:justify-start  gap-[30px]  w-full md:w-[20%] ">
