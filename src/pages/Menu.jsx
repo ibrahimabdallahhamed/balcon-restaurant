@@ -53,7 +53,7 @@ export default function Menu() {
           oil. Filter by category or search by dish or ingredient.
         </p>
       </header>
-      <section className="bg-[var(--background)] w-full overflow-x-auto  md:pt-20 pt-[20px]  items-center py-[15px] md:py-[30px]  justify-between xl:px-[300px] px-[20px] ">
+      <section className="bg-[var(--background)] w-full overflow-x-auto  md:pt-20 py-[20px]  items-center py-[15px] md:py-[30px]  justify-between xl:px-[300px] px-[20px] ">
         <div className="flex  md:flex-wrap items-center gap-[10px] md:gap-[20px] pb-[20px] overflow-x-auto  border-b-[2px] border-[var(--border)]">
           {category.map((cat) => (
             <button
