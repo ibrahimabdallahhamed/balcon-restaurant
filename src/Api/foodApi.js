@@ -12,6 +12,10 @@ export async function Categories() {
   const data = await fetchApi("categories.php");
   return data.categories || [];
 }
+export async function GetMealByCat(cat = "SeaFood") {
+  const data = await fetchApi(`filter.php?c=${encodeURIComponent(cat)}`);
+  return data.meals || [];
+}
 export async function GetRandomMeal() {
   const data = await fetchApi("random.php");
   return data.meals ? data.meals[0] : null;

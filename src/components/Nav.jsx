@@ -54,7 +54,7 @@ export default function Nav() {
       {/*--------------------------------------------
        *                    Resturant Name
        *----------------------------------------***/}
-      <div className="flex text-[var(--text)] items-center justify-between   w-full md:w-[20%] ">
+      <div className="flex text-[var(--text)] items-center justify-between md:justify-start  gap-[30px]   w-full md:w-[20%] ">
         <img src={resLogo} alt="resturant logo" className="w-[40px]  inline " />
         <h2 className="text-[34px] font-[600]">{en ? "Balcon" : "بالكون"}</h2>
         {/***---------------------------------------------
