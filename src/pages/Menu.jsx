@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import { Categories, GetMealByCat } from "../Api/foodApi";
-
+import { useLocation } from "react-router-dom";
 export default function Menu() {
+  const location = useLocation();
+  let intialCat = location.state?.selectedCat || "Beef";
   function random(min, max) {
     let result;
     result = Math.floor(Math.random() * (max - min + 1) + min);
     return result;
   }
-  const [active, setActive] = useState("Beef");
+  const [active, setActive] = useState(intialCat);
   const [category, setCategory] = useState([]);
   const [mealsByCat, setMealsByCat] = useState([]);
   function catHandler(categoryName) {
     setActive(categoryName);
-    GetMealByCat(categoryName)
+  }
+  useEffect(() => {
+    Categories()
+      .then((data) => setCategory(data))
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    GetMealByCat(active)
       .then((data) => {
         const mealByPrice = data.map((meal) => ({
           ...meal,
@@ -21,13 +30,7 @@ export default function Menu() {
         setMealsByCat(mealByPrice);
       })
       .catch((err) => console.log(err));
-  }
-  useEffect(() => {
-    Categories()
-      .then((data) => setCategory(data))
-      .catch((err) => console.log(err));
-    catHandler("Beef");
-  }, []);
+  }, [active]);
 
   {
     /**------------------------------------------------------------------------
@@ -63,34 +66,30 @@ export default function Menu() {
             </button>
           ))}
         </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[20px] mt-10 ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[15px] md:gap-[25px] mt-10">
           {mealsByCat.map((meal) => (
             <div
               key={meal.idMeal}
-              className="flex flex-col gap-[20px] border-2 border-[var(--border)] 
-              w-[170px]  md:w-[250px] rounded-[30px] overflow-hidden pb-[20px] duration-[300ms] hover:translate-y-[-30px] h-max "
+              className="w-full flex flex-col gap-[15px] border-2 border-[var(--border)] rounded-[30px] overflow-hidden pb-[20px] duration-300 hover:-translate-y-2"
             >
-              {/* /**--------------------------------------------
-               **               Meal Image
-               *---------------------------------------------**/}
               <div className="relative">
                 <img
                   src={meal.strMealThumb}
-                  className="object-cover "
+                  className="w-full aspect-square object-cover"
                   alt={meal.strMeal}
                 />
               </div>
-              {/* /**--------------------------------------------
-               **               Meal Info
-               *---------------------------------------------**/}
-              <div className="px-[20px] flex flex-col justify-between  ">
-                <h2 className="md:text-[16px] text-[12px] font-[600] font-fraunces text-[var(--text)] line-clamp-1">
+
+              <div className="px-[16px] md:px-[20px] flex flex-col justify-between">
+                <h2 className="md:text-[18px] text-[14px] font-[600] font-fraunces text-[var(--text)] line-clamp-1">
                   {meal.strMeal}
                 </h2>
 
-                <p className="text-[22px] font-[600] font-fraunces text-[var(--text)]">{`$ ${random(2, 30)} `}</p>
-                <button className="mt-2 w-[100%] text-[16px] md:text-[22px] font-[600] font-fraunces bg-[var(--primary-ember)] text-[var(--surface)] px-[10px] rounded-[99px]">
+                <p className="text-[20px] md:text-[22px] font-[600] font-fraunces text-[var(--text)] mt-1">
+                  {`$ ${meal.price}`}
+                </p>
+
+                <button className="mt-3 w-full text-[15px] md:text-[18px] font-[600] font-fraunces bg-[var(--primary-ember)] text-[var(--surface)] py-[6px] px-[10px] rounded-[99px]">
                   Add to cart
                 </button>
               </div>

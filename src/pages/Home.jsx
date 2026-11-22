@@ -128,6 +128,9 @@ export default function Home() {
               key={cat.idCategory}
               className="bg-[var(--surface)] border-[2px] rounded-[30px] border-[var(--border)] 
               p-[20px] w-[150px] md:w-[200px] duration-[300ms] hover:translate-y-[-10px]"
+              onClick={() =>
+                navigate("/menu", { state: { selectedCat: cat.strCategory } })
+              }
             >
               <img
                 src={cat.strCategoryThumb}
